@@ -24,9 +24,13 @@ public class RaycastController : MonoBehaviour
     
     public int verticalRayCount = 4;
     
-    public virtual void Start()
+    public virtual void Awake()
     {
         collider = GetComponent<BoxCollider2D>();
+    }
+
+    public virtual void Start()
+    {
         CalculateRaySpacing();
     }
     

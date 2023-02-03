@@ -9,22 +9,30 @@ public class Controller2D : RaycastController
     private float maxClimbAngle = 80;
     private float maxDescendAngle = 75;
 
+    public Vector2 playerInput;
+
     public override void Start()
     {
         base.Start();
         
+        //IF wall climb:
+        //collisions.faceDir = 1;
+        
     }
+
     public void Move(Vector3 velocity, bool standingOnPlatform = false)
     {
         UpdateRaycastOrigins();
         collisions.Reset();
 
         collisions.velocityOld = velocity;
+        
+
         if (velocity.y < 0)
         {
             DescendSlope(ref velocity);
         }
-        
+    
         if (velocity.x != 0)
         {
             HorizontalCollisions(ref velocity);
