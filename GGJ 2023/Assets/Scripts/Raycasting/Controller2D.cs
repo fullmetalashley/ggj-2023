@@ -10,6 +10,7 @@ public class Controller2D : RaycastController
     private float maxDescendAngle = 75;
 
     public Vector2 playerInput;
+    
 
     public override void Start()
     {

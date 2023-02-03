@@ -25,7 +25,18 @@ public class CameraFollow : MonoBehaviour
     private bool lookAheadStopped;
     void Start()
     {
+        DrawFocusArea();
+    }
+
+    public void DrawFocusArea()
+    {
         focusArea = new FocusArea(target.collider.bounds, focusAreaSize);
+    }
+
+    public void SwitchTarget(Controller2D newTarget)
+    {
+        target = newTarget;
+        DrawFocusArea();
     }
 
     void LateUpdate()

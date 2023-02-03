@@ -5,23 +5,26 @@ using UnityEngine;
 //Currently, just switches which character is actively moving. 
 public class CharacterSwitch : MonoBehaviour
 {
-    public List<CharacterMovement> theCharacters;
-    private CameraController theCamera;
+    public List<Player> characters;
+    private CameraFollow theCamera;
 
     void Start()
     {
-        theCamera = FindObjectOfType<CameraController>();
+        theCamera = FindObjectOfType<CameraFollow>();
     }
 
     public void SwitchChars()
     {
-        foreach (CharacterMovement movement in theCharacters)
+        foreach (Player movement in characters)
         {
             movement.active = !movement.active;
+            movement.GetComponent<BoxCollider2D>().enabled = movement.active;
+            movement.controller.enabled = movement.active;
+            
             if (movement.active)
             {
                 //Call the camera and set this to the new thing
-                theCamera.SwitchTarget(movement);
+                theCamera.SwitchTarget(movement.controller);
             }
         }
     }
