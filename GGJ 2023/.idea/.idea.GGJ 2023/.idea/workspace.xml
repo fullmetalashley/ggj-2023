@@ -4,7 +4,8 @@
     <list default="true" id="c4ff4cb9-b581-42d8-a1aa-48f37dc42cec" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GGJ 2023/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GGJ 2023/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Raycasting/Controller2D.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Raycasting/Controller2D.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Raycasting/PlatformController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Raycasting/PlatformController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Raycasting/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Raycasting/Player.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +78,7 @@
       <workItem from="1675356050091" duration="5000" />
       <workItem from="1675361930129" duration="8000" />
       <workItem from="1675362467826" duration="165000" />
-      <workItem from="1675362643021" duration="12595000" />
+      <workItem from="1675362643021" duration="13784000" />
     </task>
     <servers />
   </component>

@@ -10,8 +10,16 @@ public class PlatformController : RaycastController
     private Vector3[] globalWaypoints;
 
     public float speed;
+    public bool cyclic;
+
+    public float waitTime;
+
+    [Range(0,2)]
+    public float easeAmount;
+    
     private int fromWaypointIndex;
     private float percentBetweenWaypoints;
+    private float nextMoveTime;
     
     private List<PassengerMovement> passengerMovement;
     private Dictionary<Transform, Controller2D> passengerDictionary = new Dictionary<Transform, Controller2D>();
@@ -40,27 +48,46 @@ public class PlatformController : RaycastController
         MovePassengers(false);
     }
 
+    float Ease(float x)
+    {
+        float a = easeAmount + 1;
+        return Mathf.Pow(x, a) / (Mathf.Pow(x, a) + Mathf.Pow(1 - x, a));
+    }
+
     Vector3 CalculatePlatformMovement()
     {
-        int toWayPointIndex = fromWaypointIndex + 1;
+        if (Time.time < nextMoveTime)
+        {
+            return Vector3.zero;
+        }
+        
+        fromWaypointIndex %= globalWaypoints.Length;
+        
+        int toWayPointIndex = (fromWaypointIndex + 1) % globalWaypoints.Length;
         float distanceBetweenWaypoints =
             Vector3.Distance(globalWaypoints[fromWaypointIndex], globalWaypoints[toWayPointIndex]);
         percentBetweenWaypoints += Time.deltaTime * speed / distanceBetweenWaypoints;
+        percentBetweenWaypoints = Mathf.Clamp01(percentBetweenWaypoints);
+        float easedPercentBetweenWaypoints = Ease(percentBetweenWaypoints);
 
         Vector3 newPos = Vector3.Lerp(globalWaypoints[fromWaypointIndex], globalWaypoints[toWayPointIndex],
-            percentBetweenWaypoints);
+            easedPercentBetweenWaypoints);
         
         if (percentBetweenWaypoints >= 1)   //We reached the next point
         {
             percentBetweenWaypoints = 0;
             fromWaypointIndex++;
 
-            if (fromWaypointIndex >= globalWaypoints.Length - 1)
+            if (!cyclic)
             {
-                //End of the array
-                fromWaypointIndex = 0;
-                System.Array.Reverse(globalWaypoints);
+                if (fromWaypointIndex >= globalWaypoints.Length - 1)
+                {
+                    //End of the array
+                    fromWaypointIndex = 0;
+                    System.Array.Reverse(globalWaypoints);
+                }
             }
+            nextMoveTime = Time.time + waitTime;
         }
         return newPos - transform.position;
     }

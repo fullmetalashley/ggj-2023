@@ -170,6 +170,9 @@ MonoBehaviour:
   - {x: 0, y: 3.17, z: 0}
   - {x: 2.04, y: 3.17, z: 0}
   speed: 2
+  cyclic: 1
+  waitTime: 0.5
+  easeAmount: 0.9
 --- !u!61 &88464736
 BoxCollider2D:
   m_ObjectHideFlags: 0
